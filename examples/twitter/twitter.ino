@@ -11,6 +11,8 @@
 //  WARNING: This example uses insecure HTTP and not HTTPS.
 //  The API key will be sent over the wire in plain text.
 //  NOTE: Twitter rejects tweets with identical content as dupes (returns 403)
+//
+// License: GPLv2
 
 #include <EtherCard.h>
 
@@ -57,7 +59,8 @@ void setup () {
   Serial.begin(57600);
   Serial.println("\n[Twitter Client]");
 
-  if (ether.begin(sizeof Ethernet::buffer, mymac) == 0)
+  // Change 'SS' to your Slave Select pin, if you arn't using the default pin
+  if (ether.begin(sizeof Ethernet::buffer, mymac, SS) == 0)
     Serial.println(F("Failed to access Ethernet controller"));
   if (!ether.dhcpSetup())
     Serial.println(F("DHCP failed"));

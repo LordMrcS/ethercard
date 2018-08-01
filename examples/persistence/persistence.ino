@@ -1,5 +1,6 @@
 // Demo for using persistence flag and readPacketSlice()
-// http://opensource.org/licenses/mit-license.php
+//
+// License: GPLv2
 
 #include <EtherCard.h>
 
@@ -44,8 +45,8 @@ void setup () {
     Serial.begin(57600);
     Serial.println(F("\n[Persistence+readPacketSlice]"));
 
-
-    if (ether.begin(sizeof Ethernet::buffer, mymac) == 0)
+    // Change 'SS' to your Slave Select pin, if you arn't using the default pin
+    if (ether.begin(sizeof Ethernet::buffer, mymac, SS) == 0)
         Serial.println(F("Failed to access Ethernet controller"));
     if (!ether.dhcpSetup())
         Serial.println(F("DHCP failed"));

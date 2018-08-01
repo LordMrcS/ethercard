@@ -1,5 +1,7 @@
 // Test the offloaded RAM stash mechanism.
-// 2011-07-10 <jc@wippler.nl> http://opensource.org/licenses/mit-license.php
+// 2011-07-10 <jc@wippler.nl>
+//
+// License: GPLv2
 
 #include <EtherCard.h>
 #include <avr/eeprom.h>
@@ -46,7 +48,9 @@ void dumpStash (const char* msg, void* ptr) {
 void setup () {
   Serial.begin(57600);
   Serial.println("\n[stashTest]");
-  ether.begin(sizeof Ethernet::buffer, mymac);
+
+  // Change 'SS' to your Slave Select pin, if you arn't using the default pin
+  ether.begin(sizeof Ethernet::buffer, mymac, SS);
 
 #if 1
   Stash buf;

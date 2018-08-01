@@ -1,11 +1,13 @@
 // Arduino demo sketch for testing RFM12B + ethernet
-// 2010-05-20 <jc@wippler.nl> http://opensource.org/licenses/mit-license.php
-
+// 2010-05-20 <jc@wippler.nl>
+//
+// License: GPLv2
+//
 // Listens for RF12 messages and displays valid messages on a webpage
 // Memory usage exceeds 1K, so use Atmega328 or decrease history/buffers
 //
 // This sketch is derived from RF12eth.pde:
-// May 2010, Andras Tucsni, http://opensource.org/licenses/mit-license.php
+// May 2010, Andras Tucsni
 
 #include <EtherCard.h>
 #include <JeeLib.h>
@@ -80,7 +82,8 @@ void setup(){
 #endif
     loadConfig();
 
-    if (ether.begin(sizeof Ethernet::buffer, mymac) == 0)
+    // Change 'SS' to your Slave Select pin, if you arn't using the default pin
+    if (ether.begin(sizeof Ethernet::buffer, mymac, SS) == 0)
       Serial.println( "Failed to access Ethernet controller");
     if (!ether.dhcpSetup())
       Serial.println("DHCP failed");

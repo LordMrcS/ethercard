@@ -3,8 +3,7 @@
 // Original author: Andrew Lindsay
 // Major rewrite and API overhaul by jcw, 2011-06-07
 //
-// Copyright: GPL V2
-// See http://www.gnu.org/licenses/gpl.html
+// License: GPLv2
 
 #include <EtherCard.h>
 
@@ -24,7 +23,8 @@ void setup () {
   }
   Serial.println();
 
-  if (ether.begin(sizeof Ethernet::buffer, mymac) == 0)
+  // Change 'SS' to your Slave Select pin, if you arn't using the default pin
+  if (ether.begin(sizeof Ethernet::buffer, mymac, SS) == 0)
     Serial.println(F("Failed to access Ethernet controller"));
 
   Serial.println(F("Setting up DHCP"));
@@ -37,4 +37,6 @@ void setup () {
   ether.printIp("DNS IP: ", ether.dnsip);
 }
 
-void loop () {}
+void loop () {
+  ether.packetLoop(ether.packetReceive());
+}

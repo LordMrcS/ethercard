@@ -1,5 +1,7 @@
 // This demo does web requests to a fixed IP address, using a fixed gateway.
-// 2010-11-27 <jc@wippler.nl> http://opensource.org/licenses/mit-license.php
+// 2010-11-27 <jc@wippler.nl>
+//
+// License: GPLv2
 
 #include <EtherCard.h>
 
@@ -31,7 +33,8 @@ void setup () {
   Serial.begin(57600);
   Serial.println("\n[getStaticIP]");
 
-  if (ether.begin(sizeof Ethernet::buffer, mymac) == 0)
+  // Change 'SS' to your Slave Select pin, if you arn't using the default pin
+  if (ether.begin(sizeof Ethernet::buffer, mymac, SS) == 0)
     Serial.println( "Failed to access Ethernet controller");
 
   ether.staticSetup(myip, gwip);

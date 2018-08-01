@@ -4,7 +4,9 @@
 // HTTP to interact with the nma api (not HTTPS). The API key WILL be sent
 // accross the wire in plain text.
 //
-// 2015-04-10 <jc@wippler.nl> http://opensource.org/licenses/mit-license.php
+// 2015-04-10 <jc@wippler.nl>
+//
+// License: GPLv2
 
 #include <EtherCard.h>
 
@@ -56,7 +58,8 @@ void setup () {
   Serial.begin(57600);
   Serial.println("\nStarting Notify My Android Example");
 
-  if (ether.begin(sizeof Ethernet::buffer, mymac) == 0)
+  // Change 'SS' to your Slave Select pin, if you arn't using the default pin
+  if (ether.begin(sizeof Ethernet::buffer, mymac, SS) == 0)
     Serial.println(F("Failed to access Ethernet controller"));
   if (!ether.dhcpSetup())
     Serial.println(F("DHCP failed"));

@@ -1,5 +1,7 @@
 // Demo using DHCP and DNS to perform a web client request.
-// 2011-06-08 <jc@wippler.nl> http://opensource.org/licenses/mit-license.php
+// 2011-06-08 <jc@wippler.nl>
+//
+// License: GPLv2
 
 #include <EtherCard.h>
 
@@ -23,7 +25,8 @@ void setup () {
   Serial.begin(57600);
   Serial.println(F("\n[webClient]"));
 
-  if (ether.begin(sizeof Ethernet::buffer, mymac) == 0)
+  // Change 'SS' to your Slave Select pin, if you arn't using the default pin
+  if (ether.begin(sizeof Ethernet::buffer, mymac, SS) == 0)
     Serial.println(F("Failed to access Ethernet controller"));
   if (!ether.dhcpSetup())
     Serial.println(F("DHCP failed"));

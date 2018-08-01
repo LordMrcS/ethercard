@@ -1,6 +1,6 @@
 /*
 
-  Udp NTP Client using the EtherCard library
+  UDP NTP Client using the EtherCard library
 
   Get the time from a Network Time Protocol (NTP) time server
   Demonstrates use of UDP sendPacket and ReceivePacket
@@ -11,7 +11,7 @@
   by Jeroen Vermeulen
   inspired by https://www.arduino.cc/en/Tutorial/UdpNtpClient
 
-  This code is in the public domain.
+  License: GPLv2
 
 */
 
@@ -29,7 +29,8 @@ void setup() {
   Serial.begin(9600);
   Serial.println(F("\n[EtherCard NTP Client]"));
 
-  if (ether.begin(sizeof Ethernet::buffer, myMac) == 0)
+  // Change 'SS' to your Slave Select pin, if you arn't using the default pin
+  if (ether.begin(sizeof Ethernet::buffer, myMac, SS) == 0)
     Serial.println(F("Failed to access Ethernet controller"));
   if (!ether.dhcpSetup())
     Serial.println(F("DHCP failed"));

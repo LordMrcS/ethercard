@@ -1,7 +1,10 @@
 // Demonstrates usage of the new udpServer feature.
-//You can register the same function to multiple ports, and multiple functions to the same port.
+// You can register the same function to multiple ports,
+// and multiple functions to the same port.
 //
 // 2013-4-7 Brian Lee <cybexsoft@hotmail.com>
+//
+// License: GPLv2
 
 #include <EtherCard.h>
 #include <IPAddress.h>
@@ -40,7 +43,8 @@ void setup(){
   Serial.begin(57600);
   Serial.println(F("\n[backSoon]"));
 
-  if (ether.begin(sizeof Ethernet::buffer, mymac) == 0)
+  // Change 'SS' to your Slave Select pin, if you arn't using the default pin
+  if (ether.begin(sizeof Ethernet::buffer, mymac, SS) == 0)
     Serial.println(F("Failed to access Ethernet controller"));
 #if STATIC
   ether.staticSetup(myip, gwip);

@@ -1,5 +1,7 @@
 // Simple demo for feeding some random data to Pachube.
-// 2011-07-08 <jc@wippler.nl> http://opensource.org/licenses/mit-license.php
+// 2011-07-08 <jc@wippler.nl>
+//
+// License: GPLv2
 
 // Handle returning code and reset ethernet module if needed
 // 2013-10-22 hneiraf@gmail.com
@@ -113,7 +115,8 @@ void initialize_ethernet(void){
     digitalWrite(5, HIGH);
     delay(500);
 
-    if (ether.begin(sizeof Ethernet::buffer, mymac) == 0){
+    // Change 'SS' to your Slave Select pin, if you arn't using the default pin
+    if (ether.begin(sizeof Ethernet::buffer, mymac, SS) == 0){
       Serial.println( "Failed to access Ethernet controller");
       continue;
     }

@@ -1,8 +1,10 @@
 // Collect RF12 packets and send them on as UDP collectd packets on Ethernet.
-// 2010-05-20 <jc@wippler.nl> http://opensource.org/licenses/mit-license.php
+// 2010-05-20 <jc@wippler.nl>
+//
+// License: GPLv2
 
 // This sketch is derived from RF12eth.pde (and etherNode.ino):
-// May 2010, Andras Tucsni, http://opensource.org/licenses/mit-license.php
+// May 2010, Andras Tucsni
 
 #include <EtherCard.h>
 #include <JeeLib.h>
@@ -77,7 +79,9 @@ void setup (){
   Serial.begin(57600);
   Serial.println("\n[JeeUdp]");
   loadConfig();
-  if (ether.begin(sizeof Ethernet::buffer, mymac) == 0)
+
+  // Change 'SS' to your Slave Select pin, if you arn't using the default pin
+  if (ether.begin(sizeof Ethernet::buffer, mymac, SS) == 0)
     Serial.println( "Failed to access Ethernet controller");
   if (!ether.dhcpSetup())
     Serial.println("DHCP failed");
